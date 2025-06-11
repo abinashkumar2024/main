@@ -35,8 +35,8 @@ semantic_models:
           percentile: 0.99
           use_discrete_percentile: True
           use_approximate_percentile: False
-# Newly added          
-metrics: 
+# Newly added
+metrics:
   # Simple type metrics
   - name: "order_total"
     description: "Sum of orders value"
@@ -53,23 +53,23 @@ metrics:
       measure:
         name: order_count
   - name: large_orders
-    description: "Count of orders with order total over 20."
+    description: "Count of orders with order total over 1."
     type: simple
     label: "Large Orders"
     type_params:
       measure:
         name: order_count
     filter: |
-      {{ Metric('order_total', group_by=['order_id']) }} >=  20
+      {{ Metric('order_total', group_by=['order_id']) }} >=  2
   # Ratio type metric
   - name: "avg_order_value"
     label: "avg_order_value"
     description: "average value of each order"
     type: ratio
     type_params:
-      numerator: 
+      numerator:
         name: order_total
-      denominator: 
+      denominator:
         name: order_count
   # Cumulative type metrics
   - name: "cumulative_order_amount_mtd"
